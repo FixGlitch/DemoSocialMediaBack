@@ -25,10 +25,10 @@ const getUserById = async (userId) => {
   }
 };
 
-const updateUser = async (userId, { username, password }) => {
+const updateUser = async (userId, { full_name, password }) => {
   try {
     return await User.update(
-      { username, password },
+      { full_name, password },
       { where: { user_id: userId } }
     );
   } catch (error) {
@@ -44,9 +44,9 @@ const deleteUser = async (userId) => {
   }
 };
 
-const findUserByUsername = async (username) => {
+const findUserByUsername = async (full_name) => {
   try {
-    return await User.findOne({ where: { username } });
+    return await User.findOne({ where: { full_name } });
   } catch (error) {
     throw new Error(`Error finding user: ${error.message}`);
   }

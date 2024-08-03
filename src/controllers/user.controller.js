@@ -29,10 +29,13 @@ const getUserById = async (userId) => {
   }
 };
 
-const updateUser = async (userId, { username, password }) => {
+const updateUser = async (userId, { full_name, password }) => {
   try {
     const hashedPassword = await bcrypt.hash(password, 10);
-    const [updated] = await userService.updateUser(userId, { username, password: hashedPassword });
+    const [updated] = await userService.updateUser(userId, {
+      full_name,
+      password: hashedPassword,
+    });
     if (updated === 0) {
       throw new Error("User not found or not updated");
     }
@@ -50,13 +53,15 @@ const deleteUser = async (userId) => {
   }
 };
 
-const authenticateUser = async (username, password) => {
+const authenticateUser = async (full_name, password) => {
   try {
-    const user = await userService.findUserByUsername(username);
+    const user = await userService.findUserByUsername(full_name);
     if (!user || !(await bcrypt.compare(password, user.password))) {
       throw new Error("Invalid username or password");
     }
-    const token = jwt.sign({ userId: user.user_id }, process.env.JWT_SECRET, { expiresIn: '1h' });
+    const token = jwt.sign({ userId: user.user_id }, process.env.JWT_SECRET, {
+      expiresIn: "1h",
+    });
     return { user, token };
   } catch (error) {
     throw new Error(`Error authenticating user: ${error.message}`);

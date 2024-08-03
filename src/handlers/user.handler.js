@@ -55,13 +55,10 @@ const deleteUserHandler = async (req, res) => {
 };
 
 const loginUserHandler = async (req, res) => {
-  const { username, password } = req.body;
+  const { full_name, password } = req.body;
   try {
-    const { user, token } = await userController.authenticateUser(
-      username,
-      password
-    );
-    res.json({ message: "Login successful", user, token });
+    const { user, token } = await userController.authenticateUser(full_name, password);
+    res.status(200).json({ message: "Login successful", user, token });
   } catch (error) {
     res.status(401).json({ message: error.message });
   }
