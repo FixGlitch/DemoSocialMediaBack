@@ -67,7 +67,7 @@ userRouter.post("/", userHandler.createUserHandler);
  *             schema:
  *               type: array
  *               items:
- *                 $ref: '#/components/schemas/User'
+ *                 $ref: '#/components/schemas/UserPostData'
  *       500:
  *         description: Internal server error.
  */
@@ -94,7 +94,7 @@ userRouter.get("/", userHandler.getAllUsersHandler);
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/User'
+ *               $ref: '#/components/schemas/UserPostData'
  *       404:
  *         description: User not found.
  *       500:
@@ -122,14 +122,14 @@ userRouter.get("/:userId", userHandler.getUserByIdHandler);
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/User'
+ *             $ref: '#/components/schemas/UserPostData'
  *     responses:
  *       200:
  *         description: User updated successfully.
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/User'
+ *               $ref: '#/components/schemas/UserPostData'
  *       500:
  *         description: Internal server error.
  */
