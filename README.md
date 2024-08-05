@@ -28,3 +28,4 @@ Para iniciar el backend:
 1. Crea una base de datos en PostgreSQL.
 2. Para ejecutar el proyecto: `npm run dev`
 3. Para probar los endpoints en Swagger, necesitas el nombre del entorno y la contraseña.
+4. Recuerda renombrar el env.example a env.
