@@ -22,6 +22,9 @@ const userHandler = require("../handlers/user.handler");
  *         password:
  *           type: string
  *           description: The password of the user.
+ *         about:
+ *           type: string
+ *           description: The about me of the user.
  *       required:
  *         - full_name
  *         - password
